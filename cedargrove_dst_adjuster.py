@@ -24,9 +24,7 @@ Implementation Notes
 import time
 
 __version__ = "0.0.0+auto.0"
-__repo__ = (
-    "https://github.com/CedarGroveStudios/CircuitPython_DST_Adjuster.git"
-)
+__repo__ = "https://github.com/CedarGroveStudios/CircuitPython_DST_Adjuster.git"
 
 # pylint: disable=too-many-return-statements
 def _detect_dst(datetime):
