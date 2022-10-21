@@ -9,8 +9,8 @@ Introduction
     :alt: Discord
 
 
-.. image:: https://github.com/CedarGroveStudios/Cedargrove_CircuitPython_DST_Adjuster/workflows/Build%20CI/badge.svg
-    :target: https://github.com/CedarGroveStudios/Cedargrove_CircuitPython_DST_Adjuster/actions
+.. image:: https://github.com/CedarGroveStudios/CircuitPython_DST_Adjuster/workflows/Build%20CI/badge.svg
+    :target: https://github.com/CedarGroveStudios/CircuitPython_DST_Adjuster/actions
     :alt: Build Status
 
 
@@ -18,8 +18,13 @@ Introduction
     :target: https://github.com/psf/black
     :alt: Code Style: Black
 
-A CircitPython helper to adjust to North American Daylight Saving Time (DST).
+A CircitPython helper to detect and adjust North American Daylight Saving Time (DST).
 
+``Adjust DST`` converts Standard Time (xST) to North American DST. Input to this
+function is a structured time object in xST. The function returns a structured
+time object adjusted to a DST value if appropriate and a flag indicating the DST
+adjustment was made. The helper cannot detect DST for a structured time object
+that is encoded as DST.
 
 Dependencies
 =============
@@ -31,35 +36,7 @@ Please ensure all dependencies are available on the CircuitPython filesystem.
 This is easily achieved by downloading
 `the Adafruit library and driver bundle <https://circuitpython.org/libraries>`_
 or individual libraries can be installed using
-`circup <https://github.com/adafruit/circup>`_.Installing from PyPI
-=====================
-.. note:: This library is not available on PyPI yet. Install documentation is included
-   as a standard element. Stay tuned for PyPI availability!
-
-.. todo:: Remove the above note if PyPI version is/will be available at time of release.
-
-On supported GNU/Linux systems like the Raspberry Pi, you can install the driver locally `from
-PyPI <https://pypi.org/project/Cedargrove-circuitpython-dst-adjuster/>`_.
-To install for current user:
-
-.. code-block:: shell
-
-    pip3 install Cedargrove-circuitpython-dst-adjuster
-
-To install system-wide (this may be required in some cases):
-
-.. code-block:: shell
-
-    sudo pip3 install Cedargrove-circuitpython-dst-adjuster
-
-To install in a virtual environment in your current project:
-
-.. code-block:: shell
-
-    mkdir project-name && cd project-name
-    python3 -m venv .venv
-    source .env/bin/activate
-    pip3 install Cedargrove-circuitpython-dst-adjuster
+`circup <https://github.com/adafruit/circup>`_.
 
 Installing to a Connected CircuitPython Device with Circup
 ==========================================================
@@ -76,7 +53,7 @@ following command to install:
 
 .. code-block:: shell
 
-    circup install dst_adjuster
+    circup install cedargrove_dst_adjuster
 
 Or the following command to update an existing version:
 
@@ -92,7 +69,7 @@ examples folder and be included in docs/examples.rst.
 
 Documentation
 =============
-API documentation for this library can be found on `Read the Docs <https://circuitpython-dst-adjuster.readthedocs.io/>`_.
+API documentation for this library can be found on `Read the Docs <https://circuitpython-daylightsavingadjuster.readthedocs.io/>`_.
 
 For information on building library documentation, please check out
 `this guide <https://learn.adafruit.com/creating-and-sharing-a-circuitpython-library/sharing-our-docs-on-readthedocs#sphinx-5-1>`_.
