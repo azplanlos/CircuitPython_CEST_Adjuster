@@ -26,6 +26,9 @@ time object adjusted to a DST value if appropriate and a flag indicating the DST
 adjustment was made. The helper cannot detect DST for a structured time object
 that is encoded as DST.
 
+.. image:: https://github.com/CedarGroveStudios/CircuitPython_DST_Adjuster/blob/main/media/WARNING.jpg
+
+
 Dependencies
 =============
 This driver depends on:
