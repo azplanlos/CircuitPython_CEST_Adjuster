@@ -12,7 +12,7 @@ requires = [
 
 [project]
 name = "cedargrove-circuitpython-dst-adjuster"
-description = "A CircitPython helper to adjust to North American Daylight Saving Time (DST)."
+description = "A CircitPython helper to adjust to North American Daylight Saving Time."
 version = "0.0.0+auto.0"
 readme = "README.rst"
 authors = [
