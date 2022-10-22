@@ -96,19 +96,19 @@ Usage Example
         )
     )
 
-# Print the adjusted time
-print(
-    "{}: {}/{}/{} {:02}:{:02}:{:02}  week_day={}".format(
-        flag_text,
-        adj_datetime.tm_mon,
-        adj_datetime.tm_mday,
-        adj_datetime.tm_year,
-        adj_datetime.tm_hour,
-        adj_datetime.tm_min,
-        adj_datetime.tm_sec,
-        adj_datetime.tm_wday,
+    # Print the adjusted time
+    print(
+        "{}: {}/{}/{} {:02}:{:02}:{:02}  week_day={}".format(
+            flag_text,
+            adj_datetime.tm_mon,
+            adj_datetime.tm_mday,
+            adj_datetime.tm_year,
+            adj_datetime.tm_hour,
+            adj_datetime.tm_min,
+            adj_datetime.tm_sec,
+            adj_datetime.tm_wday,
+        )
     )
-)
 
 Documentation
 =============
