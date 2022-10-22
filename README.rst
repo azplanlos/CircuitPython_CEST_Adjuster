@@ -70,31 +70,31 @@ Usage Example
 .. code-block:: python
 
     import time
-from cedargrove_dst_adjuster import adjust_dst
+    from cedargrove_dst_adjuster import adjust_dst
 
-# Today's date: 11/01/2020 00:00 Standard Time (xST)
-datetime = time.struct_time((2020, 11, 1, 0, 0, 0, 6, 0, -1))
+    # Today's date: 11/01/2020 00:00 Standard Time (xST)
+    datetime = time.struct_time((2020, 11, 1, 0, 0, 0, 6, 0, -1))
 
-# Check datetime and adjust if DST
-adj_datetime, is_dst = adjust_dst(datetime)
+    # Check datetime and adjust if DST
+    adj_datetime, is_dst = adjust_dst(datetime)
 
-if is_dst:
-    flag_text = "DST"
-else:
-    flag_text = "xST"
+    if is_dst:
+        flag_text = "DST"
+    else:
+        flag_text = "xST"
 
-# Print the submitted time
-print(
-    "     {}/{}/{} {:02}:{:02}:{:02}  week_day={}".format(
-        datetime.tm_mon,
-        datetime.tm_mday,
-        datetime.tm_year,
-        datetime.tm_hour,
-        datetime.tm_min,
-        datetime.tm_sec,
-        datetime.tm_wday,
+    # Print the submitted time
+    print(
+        "     {}/{}/{} {:02}:{:02}:{:02}  week_day={}".format(
+            datetime.tm_mon,
+            datetime.tm_mday,
+            datetime.tm_year,
+            datetime.tm_hour,
+            datetime.tm_min,
+            datetime.tm_sec,
+            datetime.tm_wday,
+        )
     )
-)
 
 # Print the adjusted time
 print(
