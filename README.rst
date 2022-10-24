@@ -112,7 +112,7 @@ Usage Example
 
 Documentation
 =============
-API documentation for this library can be found on `here <https://github.com/CedarGroveStudios/CircuitPython_DST_Adjuster/blob/main/media/pseudo_rtd_cedargrove_dst_adjuster.pdf>`_.
+API documentation for this library can be found `here <https://github.com/CedarGroveStudios/CircuitPython_DST_Adjuster/blob/main/media/pseudo_rtd_cedargrove_dst_adjuster.pdf>`_.
 
 For information on building library documentation, please check out
 `this guide <https://learn.adafruit.com/creating-and-sharing-a-circuitpython-library/sharing-our-docs-on-readthedocs#sphinx-5-1>`_.
