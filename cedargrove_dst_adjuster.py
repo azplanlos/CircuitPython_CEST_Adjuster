@@ -5,10 +5,11 @@
 `cedargrove_dst_adjuster`
 ================================================================================
 
-A CircuitPython helper to adjust North American Standard Time (xST) to Daylight
-Saving Time (DST).
+A CircuitPython helper to adjust Central European Time (CET) to Central European Summer Time (CEST).
 
-* Author(s): JG
+* Author(s): JG, AZ
+
+adjusted from: https://github.com/CedarGroveStudios/CircuitPython_DST_Adjuster.git
 
 Implementation Notes
 --------------------
@@ -24,13 +25,13 @@ Implementation Notes
 import time
 
 __version__ = "0.0.0+auto.0"
-__repo__ = "https://github.com/CedarGroveStudios/CircuitPython_DST_Adjuster.git"
+__repo__ = "https://github.com/azplanlose/CircuitPython_CEST_Adjuster.git"
 
 # pylint: disable=too-many-return-statements
 def _detect_dst(datetime):
-    """Determines if the North American Standard Time (xST) input is
-    within the Daylight Saving Time (DST) window. Input to this function is
-    expressed as a structured time object in Standard Time (xST). The function
+    """Determines if the Central European Time (CET) input is
+    within the Daylight Saving Time window. Input to this function is
+    expressed as a structured time object in Standard Time. The function
     returns ``True`` if the datetime object is within the DST window, ``False``
     if the datetime object is outside of the DST window. The helper cannot
     detect DST for a structured time object that was encoded as DST.
@@ -49,53 +50,31 @@ def _detect_dst(datetime):
 
     # Get the date of the previous Sunday or today's date if Sunday.
     prev_sunday_date = datetime.tm_mday - weekday
+    next_sunday_date = prev_sunday_date + 7
 
-    """ Test for March window opening threshold: Second Sunday occurs on the 8th
-    through 14th of the month at 02:00 Standard Time (xST).
+    """ Test for March window opening threshold: Last Sunday.
     """
     if datetime.tm_mon == 3:
-        if prev_sunday_date <= 7:  # First Sunday of month or before
-            return False  # xST
-        if prev_sunday_date <= 14:  # Second Sunday of month
-            # Determine current DST threshold
-            #  year, March, previous Sunday date, 02 hours xST, 00 min, 00 sec
-            dst_thresh = time.mktime(
-                time.struct_time(
-                    (datetime.tm_year, 3, prev_sunday_date, 2, 0, 0, 0, -1, -1)
-                )
-            )
-            if time.mktime(datetime) < dst_thresh:
-                return False  # xST
-        return True  # DST
+        if next_sunday_date > 31 or (datetime.tm_mday == 31 and next_sunday_date == 31):  # Last Sunday of month or after
+            return True  # CEST
+        return False #CET
 
-    """Test for November window closing threshold: First Sunday occurs on the
-    1st through 7th of the month at 01:00 Standard Time (xST) = 02:00 Daylight
-    Saving Time (xDT).
+    """Test for October window closing threshold: Last Sunday.
     """
-    if datetime.tm_mon == 11:
-        if prev_sunday_date < 1:  # Before first Sunday of month
-            return True  # DST
-        if prev_sunday_date <= 7:  # First Sunday of month
-            # Determine current xST threshold
-            #  year, November, previous Sunday date, 01 hours xDT, 00 min, 00 sec
-            xst_thresh = time.mktime(
-                time.struct_time(
-                    (datetime.tm_year, 11, prev_sunday_date, 1, 0, 0, 0, -1, -1)
-                )
-            )
-            if time.mktime(datetime) < xst_thresh:
-                return True  # DST
-        return False  # xST
+    if datetime.tm_mon == 10:
+        if next_sunday_date > 31 or (datetime.tm_mday == 31 and next_sunday_date == 31):  # Last Sunday of month or after
+            return False  # CET
+        return True # CEST
 
     # Check for Standard Time window
-    if datetime.tm_mon < 3 or datetime.tm_mon > 11:  # Dec - Feb: xST
+    if datetime.tm_mon < 3 or datetime.tm_mon > 10:  # Dec - Feb: xST
         return False  # xST
     return True  # DST; datetime.tm_mon is Apr - Oct
 
 
 def adjust_dst(datetime):
-    """Converts North American Standard Time (xST) to Daylight Saving Time
-    (DST). Input to this function is a structured time object in xST. The
+    """Converts Central European Time (CET) to Central European Summer Time
+    (CEST). Input to this function is a structured time object. The
     function returns a structured time object adjusted to a DST value if
     appropriate and a flag indicating the DST adjustment was made. The helper
     cannot correctly detect DST for a structured time object that is encoded as
